@@ -16,17 +16,17 @@ class KeyboardSeeder extends Seeder
     {
         DB::table('keyboard_categories')->insert([
             'name' => '87 Key Keyboard',
-            'image' => '...',
+            'image' => 'keyboard/keychorn.jpg',
         ]);
 
         DB::table('keyboard_categories')->insert([
             'name' => '61 Key Keyboard',
-            'image' => '...',
+            'image' => 'keyboard/keychorn.jpg',
         ]);
 
         DB::table('keyboard_categories')->insert([
             'name' => 'XDA Profile',
-            'image' => '...',
+            'image' => 'keyboard/keychorn.jpg',
         ]);
 
         DB::table('keyboards')->insert([
@@ -34,7 +34,7 @@ class KeyboardSeeder extends Seeder
             'name' => 'Razer',
             'price' => '100000',
             'desc' => 'so cool',
-            'image' => 'this is image',
+            'image' => 'keyboard/keychorn.jpg',
         ]);
     }
 }

@@ -10,7 +10,7 @@ class Keyboard extends Model
     use HasFactory;
 
     protected $fillable = [
-        'category',
+        'category_id',
         'name',
         'price',
         'desc',

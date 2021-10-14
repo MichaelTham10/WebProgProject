@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('title', '')
+@section('title', 'Keyboard')
 
 @section('content')
 
 @endsection
+

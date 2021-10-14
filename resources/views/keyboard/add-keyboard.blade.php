@@ -10,15 +10,19 @@
                 <div class="card-header">{{ __('Add Keyboard') }}</div>
 
                 <div class="card-body">
-                    <form action="/store-keyboard" method="POST">
+                    <form action="{{route("store-keyboard")}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
                             <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __('Keyboard Category') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control">
-                                    <option>Category List</option>
+                                <select name="category" class="form-control" required>
+                                    <option value="" hidden selected disabled >Choose Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                    
                                 </select>
                             </div>
                         </div>
@@ -27,7 +31,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Keyboard Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name">
+                                <input id="name" required type="text" class="form-control @error('name') is-invalid @enderror" name="name">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +45,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Keyboard Price') }}</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price">
+                                <input id="price" required type="number" class="form-control @error('price') is-invalid @enderror" name="price">
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +59,7 @@
                             <label for="desc" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control @error('desc') is-invalid @enderror" rows="3" name="desc"></textarea>
+                                <textarea required class="form-control @error('desc') is-invalid @enderror" rows="3" name="description"></textarea>
 
                                 @error('desc')
                                     <span class="invalid-feedback" role="alert">
@@ -69,7 +73,7 @@
                             <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                             <div class="col-md-6">
-                                <input type="file" class="form-control-file @error('desc') is-invalid @enderror" name="image">
+                                <input type="file" required class="form-control-file @error('desc') is-invalid @enderror" name="image">
 
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
