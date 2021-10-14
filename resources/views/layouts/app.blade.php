@@ -65,6 +65,14 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="/add-keyboard">
+                                        Add Keyboard
+                                    </a>
+
+                                    <a class="dropdown-item" href="/manage-category">
+                                        Manage Categories
+                                    </a>
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

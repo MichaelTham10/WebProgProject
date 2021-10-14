@@ -15,6 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <a href="/add-keyboard">Here to add Keyboard</a>
                 </div>
             </div>
         </div>
