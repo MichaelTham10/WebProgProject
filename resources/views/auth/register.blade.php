@@ -94,7 +94,7 @@
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
                             <div class="col-md-6">
-                                <input type="text" name="dateofbirth" class="form-control" required>
+                                <input type="date" name="dateofbirth" class="form-control" required>
                             </div>
                         </div>
 
