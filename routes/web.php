@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [App\Http\Controllers\KeyboardController::class, 'welcome']);
+Route::get('/', [App\Http\Controllers\KeyboardController::class, 'welcome'])->name('welcome');
 
 Auth::routes();
 
@@ -22,7 +22,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //keyboard
 Route::get('/add-keyboard', [App\Http\Controllers\KeyboardController::class, 'add'])->name('add-keyboard');
+Route::get('/keyboards/{id}',  [App\Http\Controllers\KeyboardController::class, 'index'])->name('keyboards');
+Route::get('/update/keyboard/{id}', [App\Http\Controllers\KeyboardController::class, 'update'])->name('update-page');
+
 Route::post('/store-keyboard', [App\Http\Controllers\KeyboardController::class, 'store'])->name('store-keyboard');
+Route::patch('/update/edit/{id}', [App\Http\Controllers\KeyboardController::class, 'edit'])->name('update-keyboard');
+Route::delete('/delete/keyboard/{id}', [App\Http\Controllers\KeyboardController::class, 'delete'])->name('delete-keyboard');
 
 //category
 Route::get('/manage-category', [App\Http\Controllers\KeyboardCategoryController::class, 'index'])->name('manage-category');

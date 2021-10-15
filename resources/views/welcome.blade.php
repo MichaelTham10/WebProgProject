@@ -3,10 +3,16 @@
 @section('title', 'Welcome')
 
 @section('content')
-@if(Session::has('success'))
-    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
-@endif
+  
 <div class="container">
+   
+    @if(Session::has('Success'))
+        
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>    
+            <strong>{{ Session::get('message') }}</strong>
+        </div>
+    @endif
     <blockquote class="blockquote text-center">
         <h1 class="mb-1" style="font-weight: bolder">Welcome to Keypedia</h1>
         <p class="font-size:16px">Best Keyboard and Keycaps Shop</p>
@@ -18,7 +24,7 @@
             @foreach ($categories as $category)
                 <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                  <p class="card-text">{{$category->name}}</p>
+                  <a href="{{ route('keyboards', $category->id) }}" class="card-text">{{$category->name}}</a>
                 </div>
                 <img class="card-img-top" src="{{ asset('/storage/'. $category->image)}}" alt="{{$category->image}}">
               </div>

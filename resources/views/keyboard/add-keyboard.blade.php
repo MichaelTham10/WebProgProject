@@ -3,7 +3,9 @@
 @section('title', 'Add Keyboard')
 
 @section('content')
+
 <div class="container">
+    
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,16 +16,21 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="category_id" class="col-md-4 col-form-label text-md-right">{{ __('Keyboard Category') }}</label>
+                            <label for="category_id" class="col-md-4 col-form-label text-md-right ">{{ __('Keyboard Category') }}</label>
 
                             <div class="col-md-6">
-                                <select name="category" class="form-control" required>
+                                <select name="category" class="form-control @error('category') is-invalid @enderror" required>
                                     <option value="" hidden selected disabled >Choose Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                     
                                 </select>
+                                @error('category')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -42,7 +49,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Keyboard Price') }}</label>
+                            <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Keyboard Price') }}(USD)</label>
 
                             <div class="col-md-6">
                                 <input id="price" required type="number" class="form-control @error('price') is-invalid @enderror" name="price">
@@ -59,9 +66,9 @@
                             <label for="desc" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea required class="form-control @error('desc') is-invalid @enderror" rows="3" name="description"></textarea>
+                                <textarea required class="form-control @error('description') is-invalid @enderror" rows="3" name="description"></textarea>
 
-                                @error('desc')
+                                @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -86,7 +93,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Add Keyboard') }}
+                                    Add Keyboard
                                 </button>
                             </div>
                         </div>
