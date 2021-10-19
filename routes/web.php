@@ -31,3 +31,7 @@ Route::delete('/delete/keyboard/{id}', [App\Http\Controllers\KeyboardController:
 
 //category
 Route::get('/manage-category', [App\Http\Controllers\KeyboardCategoryController::class, 'index'])->name('manage-category');
+Route::get('/update/category/{id}', [App\Http\Controllers\KeyboardCategoryController::class, 'update'])->name('update-category-page');
+
+Route::patch('/update/category-edit/{id}', [App\Http\Controllers\KeyboardCategoryController::class, 'edit'])->name('update-category');
+Route::delete('/delete/category/{id}', [App\Http\Controllers\KeyboardCategoryController::class, 'delete'])->name('delete-category');

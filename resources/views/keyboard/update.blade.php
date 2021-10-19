@@ -15,7 +15,7 @@
                         <img class="card-img h-75 w-100" src="{{ asset('/storage/'. $keyboard->image)}}" alt="">
                     </div>
                     <div class="col-sm-8">
-                        <form action="{{route("update-keyboard", $keyboard->id)}}" method="POST" enctype="multipart/form-data">
+                        <form action='/update/edit/{{$keyboard->id}}' method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <div class="form-group row">

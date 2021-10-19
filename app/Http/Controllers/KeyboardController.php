@@ -68,7 +68,6 @@ class KeyboardController extends Controller
 
         if($request->file('image') != null){
             $image_path = $request->file('image')->store('keyboard','public');
-            
         }
         else{
             $image_path = $keyboard->image;
@@ -85,6 +84,7 @@ class KeyboardController extends Controller
 
         return redirect()->route('keyboards', [$keyboard->category_id])->with('Success', 'Keyboard successfully updated');
     }
+    
     public function delete($id)
     {
         Keyboard::destroy($id);
