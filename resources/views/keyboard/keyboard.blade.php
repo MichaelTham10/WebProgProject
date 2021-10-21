@@ -18,7 +18,7 @@
             <div class="card mx-2 px-3 " style="width: 18rem;">
                 <img class="card-img-top pt-2 w-100 h-75" src="{{ asset('/storage/'. $keyboard->image)}}" alt="{{$keyboard->image}}">
                 <div class="card-body text-center pt-1 mb-3">
-                    <a href="{{ route('keyboards', $keyboard->id) }}" class="card-text">{{$keyboard->name}}</a>
+                    <a href="{{ route('keyboard-detail', $keyboard->id) }}" class="card-text">{{$keyboard->name}}</a>
                     <p>US $ {{$keyboard->price}}</p>
                     <br>
                 </div>

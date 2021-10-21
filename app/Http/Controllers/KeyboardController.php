@@ -57,7 +57,7 @@ class KeyboardController extends Controller
     }
 
     public function edit($id, Request $request){
-        $keyboard = Keyboard::findOrFail($id)->first();
+        $keyboard = Keyboard::findOrFail($id);
 
         $this->validate($request, [
             'category' => 'required',
@@ -89,5 +89,12 @@ class KeyboardController extends Controller
     {
         Keyboard::destroy($id);
         return back()->with('Success', 'Keyboard successfully deleted');
+    }
+
+    public function detail($id)
+    {
+        $keyboard = Keyboard::findOrFail($id);
+
+        return view('keyboard.detail.detail', compact('keyboard'));
     }
 }

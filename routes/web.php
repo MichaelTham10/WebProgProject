@@ -35,3 +35,21 @@ Route::get('/update/category/{id}', [App\Http\Controllers\KeyboardCategoryContro
 
 Route::patch('/update/category-edit/{id}', [App\Http\Controllers\KeyboardCategoryController::class, 'edit'])->name('update-category');
 Route::delete('/delete/category/{id}', [App\Http\Controllers\KeyboardCategoryController::class, 'delete'])->name('delete-category');
+
+// keyboard detail
+
+Route::get('/detail/keyboards/{id}', [App\Http\Controllers\KeyboardController::class, 'detail'])->name('keyboard-detail');
+
+
+// Cart
+
+Route::get('/carts', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
+Route::post('/cart/{user_id}/{keyboard_id}', [App\Http\Controllers\CartController::class, 'store'])->name('store-cart');
+
+
+// Checkout
+Route::get('/history', [App\Http\Controllers\OrderController::class, 'index']);
+Route::post('/order', [App\Http\Controllers\OrderController::class, 'store']);
+
+
+

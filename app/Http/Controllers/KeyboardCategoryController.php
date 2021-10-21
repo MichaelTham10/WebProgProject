@@ -20,7 +20,7 @@ class KeyboardCategoryController extends Controller
     }
 
     public function edit($id, Request $request){
-        $category = KeyboardCategory::findOrFail($id)->first();
+        $category = KeyboardCategory::findOrFail($id);
 
         $this->validate($request, [
             'name' => 'required|min:5',

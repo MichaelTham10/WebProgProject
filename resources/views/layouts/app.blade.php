@@ -62,7 +62,12 @@
                                     <a class="dropdown-item" href="/add-keyboard">
                                         Add Keyboard
                                     </a>
-
+                                    <a class="dropdown-item" href="/carts">
+                                        My Cart
+                                    </a>
+                                    <a class="dropdown-item" href="/history">
+                                        Transaction History
+                                    </a>
                                     <a class="dropdown-item" href="/manage-category">
                                         Manage Categories
                                     </a>
@@ -91,7 +96,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <footer class="fixed-bottom page-footer font-small blue pb-4">
+        <footer class="sticky-bottom page-footer font-small blue pb-4">
 
            
             <div class="footer-copyright text-center  ">
