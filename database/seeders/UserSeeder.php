@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'address' => 'jalan kematian',
             'gender' => 'male',
-            'dob' => '2021-10-14'
+            'dob' => '2021-10-14',
+            'is_admin' => true,
         ]);
     }
 }

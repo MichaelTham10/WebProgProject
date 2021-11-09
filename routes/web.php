@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,10 +21,18 @@ Route::get('/', [App\Http\Controllers\KeyboardController::class, 'welcome'])->na
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.view');
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/user/home', [UserController::class, 'index']);
+});
 
 //keyboard
 Route::get('/add-keyboard', [App\Http\Controllers\KeyboardController::class, 'add'])->name('add-keyboard');
 Route::get('/keyboards/{id}',  [App\Http\Controllers\KeyboardController::class, 'index'])->name('keyboards');
+
 Route::get('/update/keyboard/{id}', [App\Http\Controllers\KeyboardController::class, 'update'])->name('update-page');
 
 Route::post('/store-keyboard', [App\Http\Controllers\KeyboardController::class, 'store'])->name('store-keyboard');

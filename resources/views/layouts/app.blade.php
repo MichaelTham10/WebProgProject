@@ -59,18 +59,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/add-keyboard">
-                                        Add Keyboard
-                                    </a>
-                                    <a class="dropdown-item" href="/carts">
-                                        My Cart
-                                    </a>
-                                    <a class="dropdown-item" href="/history">
-                                        Transaction History
-                                    </a>
-                                    <a class="dropdown-item" href="/manage-category">
-                                        Manage Categories
-                                    </a>
+                                    
+                                    
+                                   @yield('rights')
                                     <a class="dropdown-item" href="#">
                                         Change Password
                                     </a>
