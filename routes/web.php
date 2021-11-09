@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.view');
+    Route::get('/add-keyboard', [App\Http\Controllers\KeyboardController::class, 'add'])->name('add-keyboard');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -30,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 //keyboard
-Route::get('/add-keyboard', [App\Http\Controllers\KeyboardController::class, 'add'])->name('add-keyboard');
+
 Route::get('/keyboards/{id}',  [App\Http\Controllers\KeyboardController::class, 'index'])->name('keyboards');
 
 Route::get('/update/keyboard/{id}', [App\Http\Controllers\KeyboardController::class, 'update'])->name('update-page');
