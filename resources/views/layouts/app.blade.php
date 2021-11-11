@@ -62,6 +62,22 @@
                                     
                                     
                                    @yield('rights')
+                                   @if (Auth::user()->is_admin)
+                                    <a class="dropdown-item" href="/add-keyboard">
+                                        Add Keyboard
+                                    </a>
+
+                                    <a class="dropdown-item" href="/manage-category">
+                                        Manage Categories
+                                    </a>
+                                   @else
+                                    <a class="dropdown-item" href="/carts">
+                                        My Cart
+                                    </a>
+                                    <a class="dropdown-item" href="/history">
+                                        Transaction History
+                                    </a>
+                                   @endif
                                     <a class="dropdown-item" href="#">
                                         Change Password
                                     </a>

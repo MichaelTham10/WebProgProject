@@ -30,14 +30,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    public function redirectTo()
-    {
-        if(Auth::user()->is_admin == true){
-            return '/admin/home';
-        }
 
-        return '/user/home';
-    }
+    protected $redirectTo = RouteServiceProvider::HOME;
+    // public function redirectTo()
+    // {
+    //     if(Auth::user()->is_admin == true){
+    //         return '/admin/home';
+    //     }
+
+    //     return '/user/home';
+    // }
 
    
 
