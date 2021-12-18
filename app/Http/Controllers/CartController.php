@@ -15,8 +15,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        
-        return view('cart.cart');
+        $carts = Cart::simplePaginate(1);
+        return view('cart.cart', compact('carts'));
     }
 
     /**
@@ -26,7 +26,6 @@ class CartController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -38,27 +37,27 @@ class CartController extends Controller
     public function store($user_id, $keyboard_id, Request $request)
     {
         $this->validate($request, [
-            
+
             'quantity' => 'required|gt:0',
 
         ]);
 
-        $cart = Cart::where('user_id',$user_id)->where('keyboard_id',$keyboard_id)->first();
-        if($cart != null){
+        $cart = Cart::where('user_id', $user_id)->where('keyboard_id', $keyboard_id)->first();
+        if ($cart != null) {
             $cart->update([
                 'qty' => $cart->qty += $request->quantity
             ]);
-            return view('cart.cart')->with('Success', 'Keyboard quantity has been added to cart');
+            return redirect('/carts')->with('success', 'Keyboard quantity has been changed');
         }
-       
+
         Cart::create([
             'user_id' => $user_id,
             'keyboard_id' => $keyboard_id,
             'qty' => $request->quantity
-           
+
         ]);
 
-        return view('cart.cart')->with('Success', 'Keyboard has been added to cart');
+        return redirect('/carts')->with('success', 'Keyboard has been added to cart');
     }
 
     /**

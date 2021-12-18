@@ -8,23 +8,40 @@ use Illuminate\Http\Request;
 
 class KeyboardController extends Controller
 {
-    public function index($id){
-        $keyboards = Keyboard::where('category_id', $id)->paginate(8);
+    public function index($id)
+    {
+        $categoryId = $id;
+        $keyboards = Keyboard::where('category_id', $id)->simplePaginate(3);
 
-        return view('keyboard.keyboard', compact('keyboards'));
+        return view('keyboard.keyboard', compact('keyboards', 'categoryId'));
     }
 
-    public function welcome(){
+    public function search(Request $request, $id)
+    {
+        $categoryId = $id;
+        if ($request->searchOption == "name") {
+            $keyboards = Keyboard::where('category_id', $id)->where('name', 'LIKE', "%" . $request->search . "%")->simplePaginate(3);
+        } else {
+            $keyboards = Keyboard::where('category_id', $id)->where('price', 'LIKE', $request->search)->simplePaginate(3);
+        }
+
+        return view('keyboard.keyboard', compact('keyboards', 'categoryId'));
+    }
+
+    public function welcome()
+    {
         $categories = KeyboardCategory::all();
         return view('welcome', compact('categories'));
     }
 
-    public function add(){
+    public function add()
+    {
         $categories = KeyboardCategory::all();
         return view('keyboard.add-keyboard', compact('categories'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $categories = KeyboardCategory::all();
         $this->validate($request, [
@@ -34,8 +51,8 @@ class KeyboardController extends Controller
             'description' => 'required|min:20',
             'image' => 'required',
         ]);
-  
-        $image_path = $request->file('image')->store('keyboard','public');
+
+        $image_path = $request->file('image')->store('keyboard', 'public');
 
         Keyboard::create([
             'category_id' => $request->category,
@@ -45,31 +62,31 @@ class KeyboardController extends Controller
             'image' => $image_path
         ]);
 
-        return redirect()->route('welcome')->with( ['categories' => $categories], ['Success', 'Keyboard successfully inserted'] );
-       
+        return redirect()->route('welcome')->with(['categories' => $categories], ['Success', 'Keyboard successfully inserted']);
     }
 
-    public function update($id){
+    public function update($id)
+    {
         $keyboard = Keyboard::findOrFail($id);
         $categories = KeyboardCategory::all();
-        
-        return view('keyboard.update', compact('keyboard','categories'));
+
+        return view('keyboard.update', compact('keyboard', 'categories'));
     }
 
-    public function edit($id, Request $request){
+    public function edit($id, Request $request)
+    {
         $keyboard = Keyboard::findOrFail($id);
 
         $this->validate($request, [
             'category' => 'required',
             'name' => 'required|min:5',
             'price' => 'required|integer|gt:0',
-            'description' => 'required|min:20', 
+            'description' => 'required|min:20',
         ]);
 
-        if($request->file('image') != null){
-            $image_path = $request->file('image')->store('keyboard','public');
-        }
-        else{
+        if ($request->file('image') != null) {
+            $image_path = $request->file('image')->store('keyboard', 'public');
+        } else {
             $image_path = $keyboard->image;
         }
 
@@ -84,7 +101,7 @@ class KeyboardController extends Controller
 
         return redirect()->route('keyboards', [$keyboard->category_id])->with('Success', 'Keyboard successfully updated');
     }
-    
+
     public function delete($id)
     {
         Keyboard::destroy($id);
@@ -96,5 +113,10 @@ class KeyboardController extends Controller
         $keyboard = Keyboard::findOrFail($id);
 
         return view('keyboard.detail.detail', compact('keyboard'));
+    }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 }

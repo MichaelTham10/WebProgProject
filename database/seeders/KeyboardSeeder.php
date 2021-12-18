@@ -36,5 +36,37 @@ class KeyboardSeeder extends Seeder
             'desc' => 'so cool',
             'image' => 'keyboard/keychorn.jpg',
         ]);
+
+        DB::table('keyboards')->insert([
+            'category_id' => '1',
+            'name' => 'Logitech',
+            'price' => '120000',
+            'desc' => 'so cool',
+            'image' => 'keyboard/keychorn.jpg',
+        ]);
+
+        DB::table('keyboards')->insert([
+            'category_id' => '1',
+            'name' => 'Fantech',
+            'price' => '1000000',
+            'desc' => 'so cool',
+            'image' => 'keyboard/keychorn.jpg',
+        ]);
+
+        DB::table('keyboards')->insert([
+            'category_id' => '1',
+            'name' => 'Rexus',
+            'price' => '110000',
+            'desc' => 'so cool',
+            'image' => 'keyboard/keychorn.jpg',
+        ]);
+
+        DB::table('keyboards')->insert([
+            'category_id' => '1',
+            'name' => 'Keychorn',
+            'price' => '150000',
+            'desc' => 'so cool',
+            'image' => 'keyboard/keychorn.jpg',
+        ]);
     }
 }

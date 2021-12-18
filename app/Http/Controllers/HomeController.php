@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KeyboardCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,18 +12,15 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function welcome()
     {
-        return view('welcome');
+        $categories = KeyboardCategory::simplePaginate(3);
+        return view('welcome', compact('categories'));
     }
 }

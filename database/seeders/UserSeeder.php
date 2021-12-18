@@ -24,5 +24,15 @@ class UserSeeder extends Seeder
             'dob' => '2021-10-14',
             'is_admin' => true,
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'panzzz',
+            'email' => 'panzzz@email.com',
+            'password' => Hash::make('12345678'),
+            'address' => 'jalan kematian',
+            'gender' => 'male',
+            'dob' => '2021-10-14',
+            'is_admin' => false,
+        ]);
     }
 }

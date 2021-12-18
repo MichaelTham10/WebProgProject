@@ -19,6 +19,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+
+    <style>
+        div.scroll {
+            height: 300px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -83,7 +91,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -100,19 +108,15 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-5">
             @yield('content')
         </main>
-        <footer class="sticky-bottom page-footer font-small blue pb-4">
 
-           
-            <div class="footer-copyright text-center  ">
+        <footer class="bg-light text-center text-lg-start">
+            <div class="text-center p-3">
                 Made by Keypedia BU-01 2021
             </div>
-           
-          
-          </footer>
-          
+        </footer>
     </div>
 </body>
 

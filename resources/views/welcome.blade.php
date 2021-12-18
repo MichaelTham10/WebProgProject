@@ -19,7 +19,7 @@
     </blockquote>
     
     <div class="blockquote text-center">
-        <h1 class="mb-1 mt-5" style="font-weight: bolder">Categories</h1>
+        <h1 class="mb-5 mt-5" style="font-weight: bolder">Categories</h1>
         <div class="d-flex justify-content-center">
             @foreach ($categories as $category)
                 <div class="card" style="width: 18rem;">
@@ -29,8 +29,9 @@
                 <img class="card-img-top" src="{{ asset('/storage/'. $category->image)}}" alt="{{$category->image}}">
               </div>
             @endforeach
-            
-          
+        </div>
+        <div class="m-5 d-flex justify-content-center">
+            {{$categories->withQueryString()->links()}}
         </div>
     </div>
 </div>

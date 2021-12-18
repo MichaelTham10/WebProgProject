@@ -21,6 +21,12 @@ class OrderController extends Controller
         return view('order.order-history', compact('orders'));
     }
 
+    public function detail($id)
+    {
+        $details = OrderDetail::where('order_id', $id)->get();
+        return view('order.order-detail', compact('details'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -45,15 +51,15 @@ class OrderController extends Controller
 
 
 
-        foreach(Auth::user()->carts as $cart){
+        foreach (Auth::user()->carts as $cart) {
             OrderDetail::create([
                 'order_id' => $order->id,
                 'keyboard_id' => $cart->keyboard->id,
                 'qty' => $cart->qty,
             ]);
         }
-        
-        
+
+
 
         Cart::where('user_id', Auth::user()->id)->delete();
         $orders = Order::where('user_id', Auth::user()->id)->get();
