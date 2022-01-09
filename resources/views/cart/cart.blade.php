@@ -11,7 +11,7 @@
         <strong>{!! \Session::get('success') !!}</strong>
     </div>
     @endif
-    <div class="row justify-content-center" style="height: 68vh; text-align: center">
+    <div class="row justify-content-center" style="height: 72.3vh; text-align: center">
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('My Cart') }}</div>
@@ -25,24 +25,29 @@
                         <div class="col-sm-8 p-3 mb-5">
                             <h2>{{$cart->keyboard->name}}</h2>
                             <p>$ {{$cart->keyboard->price * $cart->qty}}</p>
+                            <form action="/update/cart/{{$cart->id}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <div class="form-group row">
+                                    <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
+            
+                                    <div class="col-md-5">
+                                        <input id="quantity" value="{{$cart->qty}}" type="number" class="form-control @error('quantity') is-invalid @enderror" name="quantity">
+            
+                                        @error('quantity')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+    
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        
+                                    </div>
+                                </div>
+                            </form>
                             
-                            <div class="form-group row">
-                                <label for="quantity" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
-        
-                                <div class="col-md-5">
-                                    <input id="quantity" value="{{$cart->qty}}" type="number" class="form-control @error('quantity') is-invalid @enderror" name="quantity">
-        
-                                    @error('quantity')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-
-                                <div>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
-                            </div>
                         </div>
                         @endforeach
                     </div>

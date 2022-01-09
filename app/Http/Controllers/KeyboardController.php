@@ -11,9 +11,9 @@ class KeyboardController extends Controller
     public function index($id)
     {
         $categoryId = $id;
-        $keyboards = Keyboard::where('category_id', $id)->simplePaginate(3);
-
-        return view('keyboard.keyboard', compact('keyboards', 'categoryId'));
+        $keyboards = Keyboard::where('category_id', $id)->simplePaginate(4);
+        $categories = KeyboardCategory::all();
+        return view('keyboard.keyboard', compact('keyboards', 'categoryId', 'categories'));
     }
 
     public function search(Request $request, $id)
@@ -24,8 +24,8 @@ class KeyboardController extends Controller
         } else {
             $keyboards = Keyboard::where('category_id', $id)->where('price', 'LIKE', $request->search)->simplePaginate(3);
         }
-
-        return view('keyboard.keyboard', compact('keyboards', 'categoryId'));
+        $categories = KeyboardCategory::all();
+        return view('keyboard.keyboard', compact('keyboards', 'categoryId', 'categories'));
     }
 
     public function welcome()
@@ -111,12 +111,9 @@ class KeyboardController extends Controller
     public function detail($id)
     {
         $keyboard = Keyboard::findOrFail($id);
-
-        return view('keyboard.detail.detail', compact('keyboard'));
+        $categories = KeyboardCategory::all();
+        return view('keyboard.detail.detail', compact('keyboard', 'categories'));
     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 }

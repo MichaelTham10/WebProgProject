@@ -49,7 +49,9 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
+                        
                             @if (Route::has('login'))
+                               
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
@@ -61,7 +63,24 @@
                                 </li>
                             @endif
                         @else
+                            
                             <li class="nav-item dropdown">
+                                <a id="navbarDropdown1" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Categories
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown1">
+                                    @foreach ($categories as $category)
+                                        <a class="dropdown-item" href="{{ route('keyboards', $category->id) }}">
+                                            {{$category->name}}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </li>
+                                
+                            <li class="nav-item dropdown">
+
+                                
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
@@ -69,7 +88,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
                                     
-                                   @yield('rights')
+                                   
                                    @if (Auth::user()->is_admin)
                                     <a class="dropdown-item" href="/add-keyboard">
                                         Add Keyboard
@@ -86,7 +105,7 @@
                                         Transaction History
                                     </a>
                                    @endif
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="/change_password">
                                         Change Password
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -102,7 +121,13 @@
                                     </form>
                                 </div>
                             </li>
+
+                           
                         @endguest
+                        <li class="nav-item">
+                            <span class="nav-link" >{{ date('Y-m-d H:i:s') }}</span>
+                        </li>        
+                        
                     </ul>
                 </div>
             </div>

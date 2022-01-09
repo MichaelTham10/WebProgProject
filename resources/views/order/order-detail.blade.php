@@ -6,7 +6,7 @@
     @php
         $total = 0;
     @endphp
-    <div style="padding: 2em">
+    <div style="padding: 2em; height:  78vh;">
         <h1 class="mb-4">Transaction History {{$details->first()->created_at}}</h1>
         <table class="table">
             <thead>

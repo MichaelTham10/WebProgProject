@@ -1,10 +1,10 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('title', 'Add Keyboard')
 
 @section('content')
 
-<div class="container">
+<div class="container" style="margin-bottom: 20vh">
     
     <div class="row justify-content-center">
         <div class="col-md-8">
