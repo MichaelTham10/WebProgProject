@@ -15,8 +15,8 @@ class KeyboardCategoryController extends Controller
 
     public function update($id){
         $category = KeyboardCategory::findOrFail($id);
-        
-        return view('keyboard.categories.update', compact('category'));
+        $categories = KeyboardCategory::all();
+        return view('keyboard.categories.update', compact('category', 'categories'));
     }
 
     public function edit($id, Request $request){
